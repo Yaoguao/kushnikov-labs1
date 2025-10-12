@@ -1,0 +1,164 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #d3ecf8;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #33475b;
+    /* Тёмно-серо-синий */
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.panel h2 {
+    font-size: 16px;
+    /* Уменьшение размера заголовков */
+    margin-bottom: 10px;
+    text-align: center;
+    /* Центровка заголовка панели */
+}
+
+.panel h3 {
+    margin-top: 0;
+    /* Убираем лишний отступ сверху */
+}
+
+.panel input {
+    width: auto;
+    /* Убираем фиксированную ширину для полей ввода */
+}
+
+.block {
+    background-color: #5a6e73;
+    /* Мягкий серо-синий */
+    color: #ffffff;
+    padding: 12px;
+    width: calc(33% - 20px);
+    /* Задает ширину блоков, оставляя отступы */
+    margin: 10px;
+    /* Отступ вокруг каждого блока */
+    border-radius: 6px;
+    box-sizing: border-box;
+    /* Учитывает отступы и границы в ширине */
+}
+
+.panel {
+    flex: 1 1 300px;
+    height: 690px;
+    max-width: 400px;
+    background-color: #ffffff;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    overflow: auto;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.panel input[type="text"],
+.panel input[type="number"] {
+    width: 100%;
+    /* Полная ширина для всех полей ввода */
+    box-sizing: border-box;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.input-group,
+.formula-group {
+    display: flex;
+    /* Убедитесь, что элементы располагаются в линию */
+    align-items: center;
+    /* Выравнивание по центру по вертикали для группы ввода и формулы */
+    margin-bottom: 12px;
+}
+
+label {
+    font-size: 12px;
+    margin-right: 10px;
+    font-weight: 600;
+    color: #4a4a4a;
+}
+
+input[type="number"] {
+    padding: 8px;
+    margin-right: 8px;
+    width: 70px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="number"]:focus {
+    border-color: #5a6e73;
+    box-shadow: 0px 0px 4px #5a6e73;
+    outline: none;
+    width: 40px;
+}
+
+.button-container {
+    display: flex;
+    /* Убедитесь, что кнопки располагаются в линию */
+    gap: 10px;
+    /* Отступ между кнопками */
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button:hover {
+    border: 2px solid black;
+}
+
+.cool-formula {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#metricsFields {
+    flex: 2;
+}
+
+#vozmuscheniya {
+    flex: 2;
+}
+
+#maxFunc {
+    flex: 1;
+}
+
+#additionalRows {
+    flex: 2;
+}
+
+.input_container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar Chart</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <h1>Последствия выброса</h1>
+    <div class="container">
+
+        <!-- Основные параметры -->
+        <div class="input_container">
+            <button class="accordion">Начальные и минимальные значения</button>
+            <div class="panel" id="metricsFields">
+
+            </div>
+
+            <!-- Ввод возмущений -->
+            <button class="accordion">Возмущения</button>
+            <div class="panel" id="vozmuscheniya">
+                <h3>Ввод коэффициентов для возмущений:</h3>
+
+                <div class="formula-group cool-formula">
+                    <label>Опасные вещества на объекте (q1):</label>
+                    <div>y </div>
+                    <div>= </div>
+                    <input type="number" id="q1_a" placeholder="a" value="1">
+                    <div>+</div>
+                    <input type="number" id="q1_b" placeholder="b" value="2">
+                    <div>sin</div>
+                    <div>(</div>
+                    <input type="number" id="q1_c" placeholder="c" value="3">
+                    <div>x </div>
+                    <div>+ </div>
+                    <input type="number" id="q1_d" placeholder="d" value="4">
+                    <div>)</div>
+                </div>
+
+                <div class="formula-group cool-formula">
+                    <label>Количество персонала (q2):</label>
+                    <div>y </div>
+                    <div>=</div>
+                    <input type="number" id="q2_a" placeholder="a" value="1">
+                    <div>+</div>
+                    <input type="number" id="q2_b" placeholder="b" value="2">
+                    <div>sin</div>
+                    <div>(</div>
+                    <input type="number" id="q2_c" placeholder="c" value="3">
+                    <div>x </div>
+                    <div>+</div>
+                    <input type="number" id="q2_d" placeholder="d" value="4">
+                    <div>)</div>
+                </div>
+
+                <div class="formula-group cool-formula">
+                    <label>Скорость ветра (q3):</label>
+                    <div>y</div>
+                    <div>=</div>
+                    <input type="number" id="q3_a" placeholder="a" value="1">
+                    <div>x</div>
+                    <div>^</div>
+                    <div>0.5</div>
+                    <div>+</div>
+                    <input type="number" id="q3_b" placeholder="b" value="2">
+                </div>
+
+                <div class="formula-group cool-formula">
+                    <label>Температура воздуха (q4):</label>
+                    <div>y</div>
+                    <div> =</div>
+                    <input type="number" id="q4_a" placeholder="a" value="1">
+                    <div>+</div>
+                    <input type="number" id="q4_b" placeholder="b" value="2">
+                    <div>step</div>
+                    <div>(</div>
+                    <input type="number" id="q4_c" placeholder="c" value="3">
+                    <div>)</div>
+                </div>
+
+                <div class="formula-group cool-formula">
+                    <label>Время до начала оповещения (q5):</label>
+                    <div>y</div>
+                    <div>=</div>
+                    <input type="number" id="q5_a" placeholder="a" value="1">
+                    <div>x</div>
+                    <div>^</div>
+                    <div>0.5</div>
+                    <div>+</div>
+                    <input type="number" id="q5_b" placeholder="b" value="2">
+                </div>
+            </div>
+
+            <button class="accordion">Максимальные значения уровня функциональных возможностей (L*)</button>
+            <div class="panel" id="maxFunc"></div>
+
+            <!-- Новый аккордеон для набора строк с a0, a1, a2, a3 -->
+            <button class="accordion">Полиномы</button>
+            <div class="panel" id="additionalRows"></div>
+        </div>
+
+        <!-- Кнопки управления -->
+        <div style="margin-top: 20px; display: flex; justify-content: space-between; width: 900px;">
+            <button onclick="generateChart()">Сгенерировать диаграмму</button>
+            <button onclick="resetDefaults()">Сбросить</button>
+            <button onclick="clearInputs()">Очистить</button>
+            <button onclick="exportChart()">Экспортировать график</button>
+            <button onclick="deleteChart()">Удалить график</button>
+            <button onclick="togglePage()">Переключить страницу</button>
+        </div>
+
+        <br>
+        <br>
+        <div style="width: 100%;"></div>
+        <!-- Место для отображения диаграммы (по умолчанию скрыто) -->
+        <img id="radarChart" alt="Radar Chart" style="display:none; margin-top: 20px;">
+    </div>
+
+    <script src="./js/main.js"></script>
+
+</body>
+</html>
