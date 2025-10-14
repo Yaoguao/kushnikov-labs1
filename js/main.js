@@ -330,7 +330,6 @@ async function generateChart() {
     ctx.drawImage(lineCanvas, 0, y);
     y += chartHeight;
 
-    // Затем radar-диаграммы в ОБРАТНОМ порядке
     for (const rc of radarCanvases) {
         ctx.drawImage(rc, 0, y);
         y += chartHeight;
