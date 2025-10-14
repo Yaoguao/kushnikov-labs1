@@ -227,7 +227,6 @@ function navigateToLab2() {
 
 // Генерация диаграмм
 async function generateChart() {
-    // Параметры размеров (как в Java)
     const chartWidth = 600;
     const chartHeight = 600;
 
@@ -324,15 +323,19 @@ async function generateChart() {
     const ctx = combined.getContext('2d');
 
     // белый фон
-    ctx.fillStyle = '#ffffff';
+    ctx.fillStyle = '#c0c0c0ff';
     ctx.fillRect(0, 0, combined.width, combined.height);
 
     let y = 0;
+    ctx.drawImage(lineCanvas, 0, y);
+    y += chartHeight;
+
+    // Затем radar-диаграммы в ОБРАТНОМ порядке
     for (const rc of radarCanvases) {
         ctx.drawImage(rc, 0, y);
         y += chartHeight;
     }
-    ctx.drawImage(lineCanvas, 0, y);
+
 
     combined.toBlob(blob => {
         const url = URL.createObjectURL(blob);
