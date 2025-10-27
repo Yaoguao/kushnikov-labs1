@@ -170,3 +170,112 @@ button:hover {
     gap: 20px;
     justify-content: space-between;
 }
+/* --- Обёртка карточек: одна горизонтальная строка --- */
+.cards-row {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    /* если экран узкий — позволяем горизонтальную прокрутку всей строки карточек */
+    overflow-x: auto;
+    padding-bottom: 6px;
+    /* убираем вертикальную прокрутку страницы, если все карточки низкие */
+}
+
+/* каждая карточка — компактна и одинаковой ширины */
+.card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(20, 30, 60, 0.06);
+    padding: 8px;
+    min-width: 260px;
+    /* минимальная ширина карточки */
+    flex: 0 0 23%;
+    /* желаемая ширина: ~4 в ряд (23% + gaps) */
+    max-height: calc(100vh - 200px);
+    /* чтобы карточки не тянулись слишком высоко */
+    display: flex;
+    flex-direction: column;
+}
+
+/* если места мало, карточки останутся равными, но строка прокрутится */
+@media (max-width: 1200px) {
+    .card {
+        flex: 0 0 300px;
+    }
+
+    /* чуть шире при узком окне — линия скроллится */
+}
+
+/* заголовок карточки */
+.card-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+/* тело карточки скроллится только внутри карточки */
+.card-body {
+    overflow: auto;
+    padding-right: 6px;
+    /* ограничим высоту, чтобы не разгонять карточку выше */
+    max-height: calc(100vh - 320px);
+}
+
+/* Полиномы — вертикальный список */
+.column-list .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 6px;
+    margin-bottom: 6px;
+    background: #fbfdff;
+    border-radius: 6px;
+}
+
+/* делаем метрики компактными (ряд ввода) */
+.metric-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 6px;
+    margin-bottom: 6px;
+    background: #fbfdff;
+    border-radius: 6px;
+}
+
+/* Формулы в возмущениях — компакт */
+.formula.compact {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.formula-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.formula-row input {
+    width: 68px;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+/* Убираем лишние отступы у контейнера */
+.container {
+    max-width: 1600px;
+    margin: 12px auto;
+    padding: 6px;
+}
+
+/* график: занимает доступное место под контролами */
+.chart-image {
+    display: block;
+    max-width: 100%;
+    margin-top: 8px;
+    border-radius: 6px;
+    border: 1px solid #e6eefc;
+}

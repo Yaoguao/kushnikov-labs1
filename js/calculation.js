@@ -1,4 +1,4 @@
-class Calculation {
+export class Calculation {
     constructor(metrics, minMetrics, Lmaxs, disturbances, additionalRows) {
         this.metrics = metrics;
         this.minMetrics = minMetrics;

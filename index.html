@@ -12,20 +12,20 @@
 
     <h1>Расчет выбросов химически опасных веществ на промышленном объекте</h1>
     <div class="container">
-        
+
         <!-- Основные параметры -->
         <div class="input_container">
             <button class="accordion">Начальные и минимальные значения</button>
             <div class="row">
                 <div class="panel" id="metricsFields">
-                
+
                 </div>
-                
+
                 <!-- Ввод возмущений -->
                 <button class="accordion">Возмущения</button>
                 <div class="panel" id="vozmuscheniya">
                     <h3>Ввод коэффициентов для возмущений:</h3>
-                
+
                     <div class="formula-group cool-formula">
                         <label>Опасные вещества на объекте (q1):</label>
                         <div>y </div>
@@ -41,7 +41,7 @@
                         <input type="number" id="q1_d" placeholder="d" value="4">
                         <div>)</div>
                     </div>
-                
+
                     <div class="formula-group cool-formula">
                         <label>Количество персонала (q2):</label>
                         <div>y </div>
@@ -57,7 +57,7 @@
                         <input type="number" id="q2_d" placeholder="d" value="4">
                         <div>)</div>
                     </div>
-                
+
                     <div class="formula-group cool-formula">
                         <label>Скорость ветра (q3):</label>
                         <div>y</div>
@@ -69,7 +69,7 @@
                         <div>+</div>
                         <input type="number" id="q3_b" placeholder="b" value="2">
                     </div>
-                
+
                     <div class="formula-group cool-formula">
                         <label>Температура воздуха (q4):</label>
                         <div>y</div>
@@ -82,7 +82,7 @@
                         <input type="number" id="q4_c" placeholder="c" value="3">
                         <div>)</div>
                     </div>
-                
+
                     <div class="formula-group cool-formula">
                         <label>Время до начала оповещения (q5):</label>
                         <div>y</div>
@@ -96,7 +96,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row">
                 <button class="accordion">Максимальные значения уровня функциональных возможностей (L*)</button>
                 <div class="panel" id="maxFunc"></div>
@@ -105,16 +105,16 @@
                 <button class="accordion">Полиномы</button>
                 <div class="panel" id="additionalRows"></div>
             </div>
-            
+
         </div>
 
         <!-- Кнопки управления -->
         <div style="margin-top: 20px; display: flex; justify-content: space-between; width: 900px;">
-            <button onclick="generateChart()">Сгенерировать диаграмму</button>
-            <button onclick="resetDefaults()">Сбросить</button>
-            <button onclick="clearInputs()">Очистить</button>
-            <button onclick="exportChart()">Экспортировать график</button>
-            <button onclick="deleteChart()">Удалить график</button>
+            <button id="generateChartBtn">Сгенерировать диаграмму</button>
+            <button id="resetDefaults">Сбросить</button>
+            <button id="clearInputs">Очистить</button>
+            <button id="exportChart">Экспортировать график</button>
+            <button id="deleteChart">Удалить график</button>
             <!-- <button onclick="togglePage()">Переключить страницу</button> -->
         </div>
 
@@ -125,7 +125,8 @@
         <img id="radarChart" alt="Radar Chart" style="display:none; margin-top: 20px;">
     </div>
 
-    <script src="./js/main.js"></script>
+    <script type="module" src="./js/main.js"></script>
 
 </body>
+
 </html>
