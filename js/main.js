@@ -15,6 +15,7 @@ window.onload = function () {
     document.getElementById('clearInputs').addEventListener('click', clearInputs);
     document.getElementById('exportChart').addEventListener('click', exportChart);
     document.getElementById('deleteChart').addEventListener('click', deleteChart);
+    document.getElementById('randomizeAllBtn').addEventListener('click', randomizeAllValues);
 };
 
 
@@ -25,41 +26,22 @@ async function generateChart() {
     // --- 1) Считать и привести input'ы к числам ---
     const metrics = [];
     const minMetrics = [];
-    const maxFuncs = [];
+    const Xmaxs = [];
 
-    for (let i = 1; i <= 15; i++) {
+    for (let i = 1; i <= 11; i++) { 
         metrics.push(parseFloat(document.getElementById(`metric${i}`).value || 0));
         minMetrics.push(clamp01(parseFloat(document.getElementById(`minMetric${i}`).value || 0)));
-        maxFuncs.push(parseInt(document.getElementById(`maxFunc${i}`).value || 0, 10));
+        Xmaxs.push(parseInt(document.getElementById(`maxFunc${i}`).value || 0, 10));
     }
 
-    // disturbances -> числа
     const disturbances = {
-        q1: {
-            a: parseFloat(document.getElementById('q1_a').value || 0),
-            b: parseFloat(document.getElementById('q1_b').value || 0),
-            c: parseFloat(document.getElementById('q1_c').value || 0),
-            d: parseFloat(document.getElementById('q1_d').value || 0)
-        },
-        q2: {
-            a: parseFloat(document.getElementById('q2_a').value || 0),
-            b: parseFloat(document.getElementById('q2_b').value || 0),
-            c: parseFloat(document.getElementById('q2_c').value || 0),
-            d: parseFloat(document.getElementById('q2_d').value || 0)
-        },
-        q3: {
-            a: parseFloat(document.getElementById('q3_a').value || 0),
-            b: parseFloat(document.getElementById('q3_b').value || 0)
-        },
-        q4: {
-            a: parseFloat(document.getElementById('q4_a').value || 0),
-            b: parseFloat(document.getElementById('q4_b').value || 0),
-            c: parseFloat(document.getElementById('q4_c').value || 0)
-        },
-        q5: {
-            a: parseFloat(document.getElementById('q5_a').value || 0),
-            b: parseFloat(document.getElementById('q5_b').value || 0)
-        }
+        q1: { a: parseFloat(document.getElementById('q1_a').value || 0), b: parseFloat(document.getElementById('q1_b').value || 0), c: parseFloat(document.getElementById('q1_c').value || 0), d: parseFloat(document.getElementById('q1_d').value || 0) },
+        q2: { a: parseFloat(document.getElementById('q2_a').value || 0), b: parseFloat(document.getElementById('q2_b').value || 0), c: parseFloat(document.getElementById('q2_c').value || 0), d: parseFloat(document.getElementById('q2_d').value || 0) },
+        q3: { a: parseFloat(document.getElementById('q3_a').value || 0), b: parseFloat(document.getElementById('q3_b').value || 0) },
+        q4: { a: parseFloat(document.getElementById('q4_a').value || 0), b: parseFloat(document.getElementById('q4_b').value || 0), c: parseFloat(document.getElementById('q4_c').value || 0) },
+        q5: { a: parseFloat(document.getElementById('q5_a').value || 0), b: parseFloat(document.getElementById('q5_b').value || 0) },
+        q6: { a: parseFloat(document.getElementById('q6_a').value || 0), b: parseFloat(document.getElementById('q6_b').value || 0) },
+        q7: { a: parseFloat(document.getElementById('q7_a').value || 0), b: parseFloat(document.getElementById('q7_b').value || 0) }
     };
 
     // additionalRows -> числа
@@ -73,33 +55,32 @@ async function generateChart() {
         };
     }
 
+
     // metricsName (если нужен)
     const metricsName = (typeof metricsList !== 'undefined' && Array.isArray(metricsList))
         ? metricsList.map(m => m.name)
-        : Array.from({ length: 15 }, (_, i) => `L${i + 1}`);
+        : Array.from({ length: 11 }, (_, i) => `X${i + 1}`); 
 
-    // Проверка длины
-    if (metrics.length !== 15 || minMetrics.length !== 15) {
-        console.error('metrics/minMetrics должен быть длины 15');
-        alert('metrics/minMetrics должен быть длины 15');
+    // Проверка длины - ТЕПЕРЬ 11
+    if (metrics.length !== 11 || minMetrics.length !== 11) {
+        console.error('metrics/minMetrics должен быть длины 11');
+        alert('metrics/minMetrics должен быть длины 11');
         return;
     }
 
-    // --- 2) Создать Calculation и получить рассчитанные метрики ---
-    // Ожидается, что class Calculation уже подключён в проекте
-    const calc = new Calculation(metrics, minMetrics, maxFuncs, disturbances, additionalRows);
-    const calculatedMap = calc.calculateMetrics(defaultValues.action); // Map( t -> [15 values] )
+    /// --- 2) Создать Calculation и получить рассчитанные метрики ---
+    const calc = new Calculation(metrics, minMetrics, Xmaxs, disturbances, additionalRows); // Xmaxs вместо maxFuncs
+    const calculatedMap = calc.calculateMetrics(defaultValues.action);
 
     // calculatedMap — экземпляр Map (ключи: 0, 0.25, 0.5, 0.75, 1)
     // Если твой Calculation возвращает объект вместо Map — слегка адаптируй ниже.
 
-    // --- 3) Создать canvases: по одному radar на кажд. t и один line chart ---
+    // --- 3) Создать canvases ---
     const radarCanvases = [];
-    const labels = Array.from({ length: 15 }, (_, i) => `L${i + 1}`);
-    const MIN_NORM = 0.25; // в normalize в классе использовалось смещение 0.25
+    const labels = Array.from({ length: 11 }, (_, i) => `X${i + 1}`); 
+    const MIN_NORM = 0.25;
 
     for (const [t, values] of calculatedMap.entries()) {
-        // values — массив длины 15 с нормированными (0.25..1) значениями
         const c = createRadarCanvas(values, minMetrics, labels, chartWidth, chartHeight, String(t));
         radarCanvases.push(c);
     }
@@ -122,7 +103,7 @@ async function generateChart() {
     ctx.drawImage(lineCanvas, 0, y);
     y += chartHeight;
 
-    for (const rc of radarCanvases) {
+     for (const rc of radarCanvases) {
         ctx.drawImage(rc, 0, y);
         y += chartHeight;
     }
@@ -265,7 +246,7 @@ async function generateChart() {
     }
 
     // Создает canvas с линейным графиком Li vs t
-    function createLineCanvas(calculatedMap, w, h, labels) {
+     function createLineCanvas(calculatedMap, w, h, labels) {
         const c = document.createElement('canvas');
         c.width = w;
         c.height = h;
@@ -347,9 +328,9 @@ async function generateChart() {
         // подписи осей
         g.fillStyle = '#000';
         g.textAlign = 'left';
-        g.fillText('Li', 6, 20);
+        g.fillText('Xi', 6, 20);
         g.textAlign = 'center';
-        g.fillText('Зависимость Li от t', left + plotW / 2, 20);
+        g.fillText('Зависимость Xi от t', left + plotW / 2, 20);
 
         return c;
     }
@@ -358,7 +339,7 @@ async function generateChart() {
 
 // Функция сброса всех параметров к дефолтным значениям
 function resetDefaults() {
-    for (let i = 1; i <= 15; i++) {
+    for (let i = 1; i <= 11; i++) { 
         document.getElementById(`metric${i}`).value = defaultValues.metrics[i - 1];
         document.getElementById(`minMetric${i}`).value = defaultValues.minMetrics[i - 1];
         document.getElementById(`maxFunc${i}`).value = defaultValues.maxFunc[i - 1];
@@ -384,6 +365,11 @@ function resetDefaults() {
     document.getElementById('q5_a').value = defaultValues.disturbances.q5.a;
     document.getElementById('q5_b').value = defaultValues.disturbances.q5.b;
 
+    document.getElementById('q6_a').value = defaultValues.disturbances.q6.a;
+    document.getElementById('q6_b').value = defaultValues.disturbances.q6.b;
+
+    document.getElementById('q7_a').value = defaultValues.disturbances.q7.a;
+    document.getElementById('q7_b').value = defaultValues.disturbances.q7.b;
     // Сбрасываем доп. строки
     for (let i = 1; i <= 98; i++) {
         document.getElementById(`a0_row${i}`).value = defaultValues.additionalRows[`f${i}`].a0;
@@ -412,7 +398,7 @@ function navigateToLab2() {
 
 // Функция для очистки всех инпутов
 function clearInputs() {
-    for (let i = 1; i <= 15; i++) {
+    for (let i = 1; i <= 11; i++) { // ТЕПЕРЬ 11
         document.getElementById(`metric${i}`).value = '';
         document.getElementById(`minMetric${i}`).value = '';
         document.getElementById(`maxFunc${i}`).value = '';
@@ -437,6 +423,12 @@ function clearInputs() {
 
     document.getElementById('q5_a').value = '';
     document.getElementById('q5_b').value = '';
+
+    document.getElementById('q6_a').value = '';
+    document.getElementById('q6_b').value = '';
+
+    document.getElementById('q7_a').value = '';
+    document.getElementById('q7_b').value = '';
 
     // Очищаем доп. строки
     for (let i = 1; i <= 98; i++) {
@@ -486,5 +478,51 @@ function togglePage() {
 
 function deleteChart() {
     document.getElementById('radarChart').style.display = 'none';
+}
+
+function randomizeAllValues() {
+    // Случайные значения для метрик (0.1 - 0.9)
+    for (let i = 1; i <= 11; i++) { // ТЕПЕРЬ 11
+        document.getElementById(`metric${i}`).value = (Math.random() * 0.8 + 0.1).toFixed(2);
+        document.getElementById(`minMetric${i}`).value = (Math.random() * 0.3 + 0.1).toFixed(2);
+        document.getElementById(`maxFunc${i}`).value = Math.floor(Math.random() * 5) + 3;
+    }
+
+    // Случайные значения для возмущений
+    document.getElementById('q1_a').value = (Math.random() * 2).toFixed(1);
+    document.getElementById('q1_b').value = (Math.random() * 2).toFixed(1);
+    document.getElementById('q1_c').value = (Math.random() * 4).toFixed(1);
+    document.getElementById('q1_d').value = (Math.random() * 2).toFixed(1);
+
+    document.getElementById('q2_a').value = (Math.random() * 2).toFixed(1);
+    document.getElementById('q2_b').value = (Math.random() * 2).toFixed(1);
+    document.getElementById('q2_c').value = (Math.random() * 4).toFixed(1);
+    document.getElementById('q2_d').value = (Math.random() * 2).toFixed(1);
+
+    document.getElementById('q3_a').value = (Math.random() * 0.5).toFixed(1);
+    document.getElementById('q3_b').value = (Math.random() * 1).toFixed(1);
+
+    document.getElementById('q4_a').value = (Math.random() * 0.3).toFixed(1);
+    document.getElementById('q4_b').value = (Math.random() * 0.5).toFixed(1);
+    document.getElementById('q4_c').value = (Math.random() * 1).toFixed(1);
+
+    document.getElementById('q5_a').value = (Math.random() * 0.8).toFixed(1);
+    document.getElementById('q5_b').value = (Math.random() * 1).toFixed(1);
+
+    document.getElementById('q6_a').value = (Math.random() * 0.8).toFixed(1);
+    document.getElementById('q6_b').value = (Math.random() * 1).toFixed(1);
+
+    document.getElementById('q7_a').value = (Math.random() * 0.8).toFixed(1);
+    document.getElementById('q7_b').value = (Math.random() * 1).toFixed(1);
+
+    // Случайные значения для полиномов (1-9)
+    for (let i = 1; i <= 98; i++) {
+        document.getElementById(`a0_row${i}`).value = Math.floor(Math.random() * 9) + 1;
+        document.getElementById(`a1_row${i}`).value = Math.floor(Math.random() * 9) + 1;
+        document.getElementById(`a2_row${i}`).value = Math.floor(Math.random() * 9) + 1;
+        document.getElementById(`a3_row${i}`).value = Math.floor(Math.random() * 9) + 1;
+    }
+
+    alert('Случайные значения успешно сгенерированы!');
 }
 

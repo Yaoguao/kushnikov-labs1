@@ -27,8 +27,7 @@ h1 {
     font-size: 16px;
     /* Уменьшение размера заголовков */
     margin-bottom: 10px;
-    text-align: center;
-    /* Центровка заголовка панели */
+    
 }
 
 .panel h3 {
@@ -90,7 +89,7 @@ h1 {
 }
 
 label {
-    font-size: 12px;
+    
     margin-right: 10px;
     font-weight: 600;
     color: #4a4a4a;
@@ -278,4 +277,234 @@ button:hover {
     margin-top: 8px;
     border-radius: 6px;
     border: 1px solid #e6eefc;
+}
+/* Добавьте этот код в конец существующего style.css */
+
+/* Кнопка случайных значений */
+.random-buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+#randomizeAllBtn {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+#randomizeAllBtn:hover {
+    background: #5a6268;
+}
+
+/* Улучшенные кнопки управления */
+.button-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* Стили для основных кнопок */
+#generateChartBtn {
+    background: #28a745;
+}
+
+#generateChartBtn:hover {
+    background: #218838;
+}
+
+#resetDefaults {
+    background: #17a2b8;
+}
+
+#resetDefaults:hover {
+    background: #138496;
+}
+
+#clearInputs {
+    background: #ffc107;
+    color: #212529;
+}
+
+#clearInputs:hover {
+    background: #e0a800;
+}
+
+#exportChart {
+    background: #007bff;
+}
+
+#exportChart:hover {
+    background: #0056b3;
+}
+
+#deleteChart {
+    background: #dc3545;
+}
+
+#deleteChart:hover {
+    background: #c82333;
+}
+
+/* Улучшенные поля ввода */
+input[type="number"], input[type="text"] {
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    font-size: 14px;
+}
+
+input[type="number"]:focus, input[type="text"]:focus {
+    border-color: #4a6572;
+    box-shadow: 0 0 0 2px rgba(74, 101, 114, 0.25);
+    outline: none;
+}
+
+/* Улучшенные заголовки */
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 2rem;
+    padding: 20px 0;
+}
+
+/* Улучшенные панели */
+.panel {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+/* Улучшенные аккордеоны (оставляем как было, но красивее) */
+.accordion {
+    background: #4a6572;
+    color: white;
+    padding: 15px 20px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    border-radius: 6px;
+    margin: 10px 0;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.accordion:hover {
+    background: #344955;
+}
+
+/* Улучшенные формулы */
+.formula-group {
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 10px 0;
+    border-left: 4px solid #4a6572;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.cool-formula {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+   
+}
+
+.cool-formula label {
+    font-weight: 600;
+    color: #2c3e50;
+    min-width: 200px;
+    margin-bottom: 0;
+}
+
+/* Улучшенные контейнеры метрик */
+.metric-container {
+    background: white;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    border: 1px solid #e9ecef;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+}
+
+.input-group label {
+    font-weight: 600;
+    color: #495057;
+    min-width: 120px;
+    margin-bottom: 0;
+}
+
+/* Уведомления */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    background: #28a745;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    font-weight: 600;
+}
+
+/* Общие улучшения для body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    padding: 30px;
+    max-width: 95%;
+}
+/* Добавьте в style.css */
+sub, sup {
+    font-size: 0.75em;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+sup {
+    top: -0.5em;
+}
+
+/* Для формул */
+.formula-group {
+    font-family: "Times New Roman", serif;
+}
+
+.formula-group div {
+    display: inline-block;
+    margin: 0 2px;
 }

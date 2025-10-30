@@ -17,9 +17,7 @@
         <div class="input_container">
             <button class="accordion">Начальные и минимальные значения</button>
             <div class="row">
-                <div class="panel" id="metricsFields">
-
-                </div>
+                <div class="panel" id="metricsFields"></div>
 
                 <!-- Ввод возмущений -->
                 <button class="accordion">Возмущения</button>
@@ -27,102 +25,115 @@
                     <h3>Ввод коэффициентов для возмущений:</h3>
 
                     <div class="formula-group cool-formula">
-                        <label>Опасные вещества на объекте (q1):</label>
-                        <div>y </div>
-                        <div>= </div>
-                        <input type="number" id="q1_a" placeholder="a" value="1">
+                        <label>F₁ - Опасные вещества на объекте:</label>
+                        <div>y</div>
+                        <div>=</div>
+                        <input type="number" id="q1_a" placeholder="a" value="0.5">
                         <div>+</div>
-                        <input type="number" id="q1_b" placeholder="b" value="2">
-                        <div>sin</div>
-                        <div>(</div>
-                        <input type="number" id="q1_c" placeholder="c" value="3">
-                        <div>x </div>
-                        <div>+ </div>
-                        <input type="number" id="q1_d" placeholder="d" value="4">
+                        <input type="number" id="q1_b" placeholder="b" value="1">
+                        <div>sin(</div>
+                        <input type="number" id="q1_c" placeholder="c" value="2">
+                        <div>t</div>
+                        <div>+</div>
+                        <input type="number" id="q1_d" placeholder="d" value="0">
                         <div>)</div>
                     </div>
 
                     <div class="formula-group cool-formula">
-                        <label>Количество персонала (q2):</label>
-                        <div>y </div>
+                        <label>F₂ - Количество персонала:</label>
+                        <div>y</div>
                         <div>=</div>
-                        <input type="number" id="q2_a" placeholder="a" value="1">
+                        <input type="number" id="q2_a" placeholder="a" value="0.3">
                         <div>+</div>
-                        <input type="number" id="q2_b" placeholder="b" value="2">
-                        <div>sin</div>
-                        <div>(</div>
-                        <input type="number" id="q2_c" placeholder="c" value="3">
-                        <div>x </div>
+                        <input type="number" id="q2_b" placeholder="b" value="0.8">
+                        <div>sin(</div>
+                        <input type="number" id="q2_c" placeholder="c" value="2">
+                        <div>t</div>
                         <div>+</div>
-                        <input type="number" id="q2_d" placeholder="d" value="4">
+                        <input type="number" id="q2_d" placeholder="d" value="0.75">
                         <div>)</div>
                     </div>
 
                     <div class="formula-group cool-formula">
-                        <label>Скорость ветра (q3):</label>
+                        <label>F₃ - Скорость ветра:</label>
                         <div>y</div>
                         <div>=</div>
-                        <input type="number" id="q3_a" placeholder="a" value="1">
-                        <div>x</div>
-                        <div>^</div>
-                        <div>0.5</div>
+                        <input type="number" id="q3_a" placeholder="a" value="0.2">
+                        <div>t</div>
                         <div>+</div>
-                        <input type="number" id="q3_b" placeholder="b" value="2">
+                        <input type="number" id="q3_b" placeholder="b" value="0.5">
                     </div>
 
                     <div class="formula-group cool-formula">
-                        <label>Температура воздуха (q4):</label>
+                        <label>F₄ - Температура воздуха:</label>
                         <div>y</div>
-                        <div> =</div>
-                        <input type="number" id="q4_a" placeholder="a" value="1">
+                        <div>=</div>
+                        <input type="number" id="q4_a" placeholder="a" value="0.1">
+                        <div>t²</div>
                         <div>+</div>
-                        <input type="number" id="q4_b" placeholder="b" value="2">
-                        <div>step</div>
-                        <div>(</div>
-                        <input type="number" id="q4_c" placeholder="c" value="3">
-                        <div>)</div>
+                        <input type="number" id="q4_b" placeholder="b" value="0.3">
+                        <div>t</div>
+                        <div>+</div>
+                        <input type="number" id="q4_c" placeholder="c" value="0.5">
                     </div>
 
                     <div class="formula-group cool-formula">
-                        <label>Время до начала оповещения (q5):</label>
+                        <label>F₅ - Время до оповещения:</label>
                         <div>y</div>
                         <div>=</div>
-                        <input type="number" id="q5_a" placeholder="a" value="1">
-                        <div>x</div>
-                        <div>^</div>
-                        <div>0.5</div>
+                        <input type="number" id="q5_a" placeholder="a" value="0.4">
+                        <div>√t</div>
                         <div>+</div>
-                        <input type="number" id="q5_b" placeholder="b" value="2">
+                        <input type="number" id="q5_b" placeholder="b" value="0.6">
+                    </div>
+
+                    <div class="formula-group cool-formula">
+                        <label>F₆ - Численность населения:</label>
+                        <div>y</div>
+                        <div>=</div>
+                        <input type="number" id="q6_a" placeholder="a" value="0.5">
+                        <div>t</div>
+                        <div>+</div>
+                        <input type="number" id="q6_b" placeholder="b" value="0.8">
+                    </div>
+
+                    <div class="formula-group cool-formula">
+                        <label>F₇ - Количество убежищ:</label>
+                        <div>y</div>
+                        <div>=</div>
+                        <input type="number" id="q7_a" placeholder="a" value="0.3">
+                        <div>√t</div>
+                        <div>+</div>
+                        <input type="number" id="q7_b" placeholder="b" value="0.7">
                     </div>
                 </div>
             </div>
+        </div>     
 
-            <div class="row">
-                <button class="accordion">Максимальные значения уровня функциональных возможностей (L*)</button>
-                <div class="panel" id="maxFunc"></div>
+        <div class="row">
+            <button class="accordion">Максимальные значения уровня функциональных возможностей (X*)</button>
+            <div class="panel" id="maxFunc"></div>
 
-                <!-- Новый аккордеон для набора строк с a0, a1, a2, a3 -->
-                <button class="accordion">Полиномы</button>
-                <div class="panel" id="additionalRows"></div>
-            </div>
-
+            <!-- Аккордеон для полиномов -->
+            <button class="accordion">Полиномы</button>
+            <div class="panel" id="additionalRows"></div>
         </div>
-
+        
         <!-- Кнопки управления -->
-        <div style="margin-top: 20px; display: flex; justify-content: space-between; width: 900px;">
+        <div class="button-container">
+            <button id="randomizeAllBtn">🎲 Случайные значения</button>
             <button id="generateChartBtn">Сгенерировать диаграмму</button>
             <button id="resetDefaults">Сбросить</button>
             <button id="clearInputs">Очистить</button>
             <button id="exportChart">Экспортировать график</button>
             <button id="deleteChart">Удалить график</button>
-            <!-- <button onclick="togglePage()">Переключить страницу</button> -->
         </div>
 
         <br>
         <br>
-        <div style="width: 100%;"></div>
+        
         <!-- Место для отображения диаграммы (по умолчанию скрыто) -->
-        <img id="radarChart" alt="Radar Chart" style="display:none; margin-top: 20px;">
+        <img id="radarChart" alt="Radar Chart" style="display:none; margin-top: 20px; max-width: 100%;">
     </div>
 
     <script type="module" src="./js/main.js"></script>

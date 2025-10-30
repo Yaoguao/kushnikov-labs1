@@ -3,7 +3,7 @@ import { defaultValues, metricsList } from './config.js';
 // Генерация полей для метрик
 export function generateMetricFields() {
     const metricsFields = document.getElementById('metricsFields');
-    metricsFields.innerHTML = '<h3>Начальные и минимальные значения</h3>'; // Очищаем поле
+    metricsFields.innerHTML = '<h3>Начальные и минимальные значения</h3>';
 
     metricsList.forEach((metric, index) => {
         const div = document.createElement('div');
@@ -38,11 +38,11 @@ export function generateAdditionalRows() {
         const a3 = defaultValues.additionalRows[`f${i}`].a3;
 
         div.innerHTML = `
-             <label>f${i}:</label>
-             <input type="number" id="a0_row${i}" value="${a0}" min="1" max="9" placeholder="a0"> <div>+</div>
-             <input type="number" id="a1_row${i}" value="${a1}" min="1" max="9" placeholder="a1"> <div>x</div> <div>+</div>
-             <input type="number" id="a2_row${i}" value="${a2}" min="1" max="9" placeholder="a2"> <div>x^2</div> <div>+</div>
-             <input type="number" id="a3_row${i}" value="${a3}" min="1" max="9" placeholder="a3"> <div>x^3 </div>
+             <label>f<sub>${i}</sub>:</label>
+             <input type="number" id="a0_row${i}" value="${a0}" min="1" max="9" placeholder="a₀"> <div>+</div>
+             <input type="number" id="a1_row${i}" value="${a1}" min="1" max="9" placeholder="a₁"> <div>x</div> <div>+</div>
+             <input type="number" id="a2_row${i}" value="${a2}" min="1" max="9" placeholder="a₂"> <div>x²</div> <div>+</div>
+             <input type="number" id="a3_row${i}" value="${a3}" min="1" max="9" placeholder="a₃"> <div>x³</div>
           `;
 
         additionalRows.appendChild(div);
@@ -52,7 +52,7 @@ export function generateAdditionalRows() {
 
 export function generateMaxFunc() {
     const maxFuncs = document.getElementById('maxFunc');
-    maxFuncs.innerHTML = '<h3>Максимальные значения уровня функциональных возможностей (L*)</h3>'; // Очищаем поле
+    maxFuncs.innerHTML = '<h3>Максимальные значения уровня функциональных возможностей (X*)</h3>';
 
     metricsList.forEach((metric, index) => {
         const div = document.createElement('div');
